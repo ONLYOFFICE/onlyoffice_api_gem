@@ -24,16 +24,19 @@ module Teamlab
     # @return [Net::HTTP::Proxy] connection proxy
     attr_accessor :proxy
 
-    def initialize
-      default_configuration
+    def initialize(params = {})
+      @server = params[:server]
+      @username = params[:username]
+      @password = params[:password]
     end
 
     def default_configuration
-      @server = 'https://teamlab.com'
-      @api_path = '/api/2.0/'
-      @api_additive = ''
-      @username = 'user'
-      @password = 'password'
+      @server ||= 'https://teamlab.com'
+      @api_path ||= '/api/2.0/'
+      @api_additive ||= ''
+      @username ||= 'user'
+      @password ||= 'password'
+      self
     end
   end
 end
